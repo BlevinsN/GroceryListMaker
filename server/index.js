@@ -1,30 +1,22 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import dotenv from "dotenv";
+import recipeRoute from "./routes/recipes.js";
+
+dotenv.config();
+
 const app = express();
-const cors = require('cors');
-const db = require('./queries');
-const port = 3000;
+const PORT = 3000;
+const corsOptions = {
+	origin: "*"
+}
 
-app.use(cors())
+app.use(cors(corsOptions));
+app.use(bodyParser.json());
 
-app.use(bodyParser.json())
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-)
-app.get('/',(request,response) => {
-  response.json({info: 'Node.js, Express, and Postgres API' })
-})
+app.use("/api/recipes", recipeRoute);
 
-app.get('/users', db.getUsers)
-app.get('/users/:id', db.getUserById)
-app.post('/users', db.createUser)
-app.put('/users/:id', db.updateUser)
-app.delete('/users/:id', db.deleteUser)
-
-console.log(app)
-
-app.listen(port, () => {
-  console.log('App running on port 3000.')
+app.listen(PORT,()=>{
+	console.log('Listening on port ${PORT}');
 })
