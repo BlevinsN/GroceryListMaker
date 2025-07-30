@@ -17,6 +17,16 @@ app.use(bodyParser.json());
 
 app.use("/api/recipes", recipeRoute);
 
+app.use(function(req,res){
+	res.status(404).json({error:"Not Found!"});
+});
+
+app.use((err,req,res,next)=>{
+	const statusCode = err.statusCode || 500;
+	const message = err.message || "Internal server error.";
+	return res.status(statusCode).json({error:message});
+});
+
 app.listen(PORT,()=>{
 	console.log('Listening on port ${PORT}');
-})
+});
