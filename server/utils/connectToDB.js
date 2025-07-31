@@ -10,14 +10,14 @@ requiredEnvVars.forEach((varName)=>{
 		console.log("missing required env variable : ${varName}");
 		process.exit(1);
 	}
-})
+});
 
 const db = new pg.Pool({
 	user: process.env.PG_USER,
 	host: process.env.PG_HOST,
 	database: process.env.PG_DATABASE,
 	password: process.env.PG_PASSWORD,
-	post: process.env.PG_PORT
+	port: process.env.PG_PORT
 });
 
 db.connect()

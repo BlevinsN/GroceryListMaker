@@ -5,6 +5,10 @@ const router = express.Router();
 
 router.get("/", getAllRecipes);
 
+// router.get("/", (req,res)=>{
+// 	res.send("get all recipe details")
+// });
+
 router.post("/",createRecipe);
 
 router.get("/:id",getRecipe);

@@ -15,7 +15,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-app.use("/postgres/recipes", recipeRoute);
+app.use("/api/recipe", recipeRoute);
 
 app.use(function(req,res){
 	res.status(404).json({error:"Not Found!"});

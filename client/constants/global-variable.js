@@ -1,3 +1,3 @@
-const baseUrl = "http://localhost:3000/postgres/recipes";
+const baseUrl = "http://localhost:3000/api/recipe";
 
 export {baseUrl};
