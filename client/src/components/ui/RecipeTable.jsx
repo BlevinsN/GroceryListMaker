@@ -4,7 +4,7 @@ import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { HStack } from '@chakra-ui/react';
 
-const RecipeTable = () => {
+const RecipeTable = ({data}) => {
 	return (
     <Table.ScrollArea borderWidth="1px" rounded="md" height="160px">
       <Table.Root size="md" stickyHeader>
@@ -20,7 +20,7 @@ const RecipeTable = () => {
         </Table.Header>
 
         <Table.Body>
-          {items.map((item) => (
+          {data.map((item) => (
             <Table.Row key={item.id}>
               <Table.Cell>{item.id}</Table.Cell>
               <Table.Cell>{item.dish_type}</Table.Cell>
@@ -40,14 +40,5 @@ const RecipeTable = () => {
     </Table.ScrollArea>
     )
 };
-
-const items = [
-  { id: 1, dish_name: "Corned Beef", dish_type:"dinner", dish_creator: "Nate", servings: 4 },
-  { id: 2, dish_name: "Corned Beef", dish_type:"dinner", dish_creator: "Nate", servings: 4 },
-  { id: 3, dish_name: "Corned Beef", dish_type:"dinner", dish_creator: "Nate", servings: 4 },
-  { id: 4, dish_name: "Corned Beef", dish_type:"dinner", dish_creator: "Nate", servings: 4 },
-  { id: 5, dish_name: "Corned Beef", dish_type:"dinner", dish_creator: "Nate", servings: 4 },
-  { id: 6, dish_name: "Corned Beef", dish_type:"dinner", dish_creator: "Nate", servings: 4 },
-]
 
 export default RecipeTable;

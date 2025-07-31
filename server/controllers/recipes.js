@@ -11,16 +11,15 @@ import {createError} from "../utils/error.js"
 
 export async function getAllRecipes(req,res,next){
 	try{
-		const response = await query(`
-			SELECT to_regclass('recipe_details');
-			`)
-			console.log(response);
-			if(response.rows[0].to_regclass){
-				await query(createDishClassificationQuery);
-				await query(createRecipeTableQuery);
-			}
-			const {rows} = await query(getAllRecipesQuery);
-			res.status(200).json(rows);
+		const response = await query("SELECT to_regclass('recipe_details');");
+		console.log(response);
+		if(!response.rows[0].to_regclass){
+			await query(createDishClassificationQuery);
+			await query(createRecipeTableQuery);
+		}
+		const {rows} = await query(getAllRecipesQuery);
+
+		res.status(200).json(rows);
 	} catch(error){
 		console.log(error.message);
 		return next(createError(400, "Couldn't get recipe details!"));
@@ -50,7 +49,7 @@ export async function updateRecipe(req,res,next){
 		const {dish_name,dish_creator,servings,dish_type,ingredients} = req.body;
 		const results = await query(updateRecipeQuery,[dish_name,dish_creator,servings,dish_type,ingredients,id]);
 		if(result.rowCount == 0){
-			return res.status(400).json({error:"Employee not found."});
+			return res.status(400).json({error:"Recipe not found."});
 		}
 		res.status(200).json(result.rows[0]);
 	} catch(error){

@@ -8,15 +8,25 @@ const App = () => {
 
   async function fetchRecipeDetails(params) {
     const res = await fetch(baseUrl);
+    const data = await res.json();
+    if(!res.ok){
+      throw new Error(data.error);
+    }
+    return data;
   }
 
   const {isPending,isError,data,error} = useQuery({
     queryKey: ["recipe_details"],
     queryFn: fetchRecipeDetails
-  })
+  });
+
+  if(isPending) return "Loading";
+  if(isError) return error.message;
+
+  console.log("data from postgres db:", data);
   return (
     <VStack gap="6" align="flex-start">
-      <RecipeTable/>
+      <RecipeTable data={data}/>
     </VStack>
   )
 };

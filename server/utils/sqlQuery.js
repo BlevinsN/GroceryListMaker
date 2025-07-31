@@ -12,7 +12,7 @@ export const createRecipeTableQuery = `
 		ingredients VARCHAR(255) NOT NULL
 	)`;
 
-export const getAllRecipesQuery = 'SELECT * FROM recipe_details';
+export const getAllRecipesQuery = 'SELECT dish_name,dish_creator,servings,dish_type FROM recipe_details';
 
 export const createRecipeQuery = `	
 	INSERT INTO recipe_details(dish_name,dish_creator,servings,dish_type,ingredients)
