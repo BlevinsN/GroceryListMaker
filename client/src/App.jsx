@@ -4,6 +4,10 @@ import RecipeTable from "./components/ui/RecipeTable";
 import { useQuery } from "@tanstack/react-query";
 import {baseUrl} from "../constants/global-variable.js";
 import InputRecipe from "./components/ui/InputRecipe.jsx";
+import {
+  Button,
+  DialogTrigger,
+} from "@chakra-ui/react";
 
 const App = () => {
 
@@ -27,7 +31,11 @@ const App = () => {
   console.log("data from postgres db:", data);
   return (
     <VStack gap="6" align="flex-start">
-      <InputRecipe/>
+      <InputRecipe>
+        <DialogTrigger asChild>
+          <Button variant="outline">Add Employee</Button>
+        </DialogTrigger>
+      </InputRecipe>
       <RecipeTable data={data}/>
     </VStack>
   )

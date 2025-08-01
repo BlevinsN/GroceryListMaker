@@ -47,7 +47,7 @@ export async function updateRecipe(req,res,next){
 	try{
 		const{id} = req.params;
 		const {dish_name,dish_creator,servings,dish_type,ingredients} = req.body;
-		const results = await query(updateRecipeQuery,[dish_name,dish_creator,servings,dish_type,ingredients,id]);
+		const result = await query(updateRecipeQuery,[dish_name,dish_creator,servings,dish_type,ingredients,id]);
 		if(result.rowCount == 0){
 			return res.status(400).json({error:"Recipe not found."});
 		}

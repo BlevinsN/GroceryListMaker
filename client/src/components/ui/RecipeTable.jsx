@@ -7,7 +7,10 @@ import {useMutation} from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import {queryClient} from "../../../utils/queryClient.js";
 import {baseUrl} from "../../../constants/global-variable.js";
-
+import InputRecipe from "./InputRecipe.jsx";
+import {
+  DialogTrigger
+} from "@chakra-ui/react";
 const RecipeTable = ({data}) => {
 
   if(!data.length){
@@ -56,14 +59,18 @@ const RecipeTable = ({data}) => {
           {data.map((item) => (
             <Table.Row key={item.id}>
               <Table.Cell>{item.id}</Table.Cell>
-              <Table.Cell>{item.dish_type}</Table.Cell>
               <Table.Cell>{item.dish_name}</Table.Cell>
+              <Table.Cell>{item.dish_type}</Table.Cell>
               <Table.Cell>{item.dish_creator}</Table.Cell>
               <Table.Cell>{item.servings}</Table.Cell>
               <Table.Cell>
                 <HStack gap="3">
                   <MdDelete size={20} className="icon" onClick={()=>mutation.mutate(item.id)}/>
-                  <FaEdit size={20} className="icon"/>
+                  <InputRecipe data={item} type="update">
+                    <DialogTrigger asChild>
+                      <FaEdit size={20} className="icon"/>
+                    </DialogTrigger>
+                  </InputRecipe>
                 </HStack>
               </Table.Cell>
             </Table.Row>

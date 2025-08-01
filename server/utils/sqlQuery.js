@@ -32,5 +32,4 @@ export const updateRecipeQuery = `
 	dish_type = COALESCE($4::dish_type, dish_type),
 	ingredients = COALESCE($5, ingredients)
 	WHERE id = $6
-	RETURNING *
 	`;
