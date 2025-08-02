@@ -27,7 +27,7 @@ const InputRecipe = ({children,type="add",data}) => {
       dish_creator:"",
       servings:"",
       ingredients:"",
-      dish_type:"",
+      dish:"",
     }:data);
 	function handleChange(e){
 		setInfo((prev)=>({...prev,[e.target.name]:e.target.value}));
@@ -52,7 +52,7 @@ const InputRecipe = ({children,type="add",data}) => {
       toast.error(error.message);
     },
     onSuccess:()=>{
-      setInfo({dish_name:"",dish_creator:"",servings:"",dish_type:"",ingredients:""});
+      setInfo({dish_name:"",dish_creator:"",servings:"",dish:"",ingredients:""});
       setOpen(false);
       toast.success("Recipe added!");
       queryClient.invalidateQueries({queryKey: ["recipe_details"]});
@@ -94,7 +94,7 @@ const InputRecipe = ({children,type="add",data}) => {
         return;
       }
     }
-    const infoUpdated = { ...info, dish_type: info.dish_type || null };
+    const infoUpdated = { ...info, dish: info.dish || null };
     if(type == "add"){
       addRecipeMutation.mutate(infoUpdated);
     } else {
@@ -126,7 +126,7 @@ const InputRecipe = ({children,type="add",data}) => {
 	                    	<Input name="dish_creator" placeholder="Enter author's name" value={info.dish_creator} onChange={handleChange}/>
 	                    </Field>
 	                    <Field label="Servings" required>
-	                    	<Input name="servings" placeholder="Enter numeber of servings" type="number" value={info.servings} onChange={handleChange}/>
+	                    	<Input name="servings" placeholder="Enter number of servings" type="number" value={info.servings} onChange={handleChange}/>
 	                    </Field>
 	                    <SelectDishType setInfo={setInfo}/>
 	                    <Field label="Ingredients" required>

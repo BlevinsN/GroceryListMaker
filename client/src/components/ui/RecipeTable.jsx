@@ -60,7 +60,7 @@ const RecipeTable = ({data}) => {
             <Table.Row key={item.id}>
               <Table.Cell>{item.id}</Table.Cell>
               <Table.Cell>{item.dish_name}</Table.Cell>
-              <Table.Cell>{item.dish_type}</Table.Cell>
+              <Table.Cell>{item.dish}</Table.Cell>
               <Table.Cell>{item.dish_creator}</Table.Cell>
               <Table.Cell>{item.servings}</Table.Cell>
               <Table.Cell>

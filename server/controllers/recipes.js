@@ -46,8 +46,8 @@ export async function deleteRecipe(req,res,next){
 export async function updateRecipe(req,res,next){
 	try{
 		const{id} = req.params;
-		const {dish_name,dish_creator,servings,dish_type,ingredients} = req.body;
-		const results = await query(updateRecipeQuery,[dish_name,dish_creator,servings,dish_type,ingredients,id]);
+		const {dish_name,dish_creator,servings,dish,ingredients} = req.body;
+		const result = await query(updateRecipeQuery,[dish_name,dish_creator,servings,dish,ingredients,id]);
 		if(result.rowCount == 0){
 			return res.status(400).json({error:"Recipe not found."});
 		}
@@ -58,11 +58,11 @@ export async function updateRecipe(req,res,next){
 }
 export async function createRecipe(req,res,next){
 	try{
-		const {dish_name,dish_creator,servings,dish_type,ingredients} = req.body;
+		const {dish_name,dish_creator,servings,dish,ingredients} = req.body;
 		if(!dish_name || !dish_creator || !servings || !ingredients){
 			return res.status(400).json({error:"Missing fields"})
 		};
-		const data = await query(createRecipeQuery,[dish_name,dish_creator,servings,dish_type,ingredients]);
+		const data = await query(createRecipeQuery,[dish_name,dish_creator,servings,dish,ingredients]);
 		res.status(201).json(data.rows[0])
 	} catch(error){
 		console.log(error,message);
