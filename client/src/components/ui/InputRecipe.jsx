@@ -78,7 +78,7 @@ const InputRecipe = ({children,type="add",data}) => {
       toast.error(error.message);
     },
     onSuccess:()=>{
-      //setOpen(false);
+      setOpen(false);
       toast.success("Recipe updated!");
       queryClient.invalidateQueries({queryKey: ["recipe_details"]});
     },
@@ -100,7 +100,7 @@ const InputRecipe = ({children,type="add",data}) => {
     } else {
       updateMutation.mutate(infoUpdated);
     }
-  };
+  }
 
 	return (
 		<Dialog.Root

@@ -42,7 +42,7 @@ const RecipeTable = ({data}) => {
     },
   });
 	return (
-    <Table.ScrollArea borderWidth="1px" rounded="md" height="160px">
+    <Table.ScrollArea borderWidth="1px" rounded="md" height="700px">
       <Table.Root size="md" stickyHeader>
         <Table.Header>
           <Table.Row bg="bg.subtle">

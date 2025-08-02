@@ -41,6 +41,7 @@ const dishtypes = createListCollection({
     { label: "Dinner", value: "Dinner" },
     { label: "Dessert", value: "Dessert" },
     { label: "Snack", value: "Snack" },
+    { label: "Side Dish", value: "SideDish" },
     { label: "Baked Good", value: "BakedGood" },
   ],
 });

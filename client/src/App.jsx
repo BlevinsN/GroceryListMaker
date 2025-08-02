@@ -33,7 +33,7 @@ const App = () => {
     <VStack gap="6" align="flex-start">
       <InputRecipe>
         <DialogTrigger asChild>
-          <Button variant="outline">Add Employee</Button>
+          <Button variant="outline">Add Recipe</Button>
         </DialogTrigger>
       </InputRecipe>
       <RecipeTable data={data}/>

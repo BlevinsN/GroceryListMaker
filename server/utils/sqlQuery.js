@@ -1,6 +1,6 @@
 export const createDishClassificationQuery = `
 	CREATE TYPE dish_type AS
-	ENUM('Breakfast','Lunch','Dinner','Dessert','Snack','BakedGood')
+	ENUM('Breakfast','Lunch','Dinner','Dessert','Snack','BakedGood','SideDish')
 `;
 export const createRecipeTableQuery = `
 	CREATE TABLE recipe_details(
@@ -12,7 +12,7 @@ export const createRecipeTableQuery = `
 		ingredients VARCHAR(255) NOT NULL
 	)`;
 
-export const getAllRecipesQuery = 'SELECT * FROM recipe_details';
+export const getAllRecipesQuery = 'SELECT * FROM recipe_details ORDER BY id';
 
 export const createRecipeQuery = `	
 	INSERT INTO recipe_details(dish_name,dish_creator,servings,dish_type,ingredients)
@@ -32,4 +32,5 @@ export const updateRecipeQuery = `
 	dish_type = COALESCE($4::dish_type, dish_type),
 	ingredients = COALESCE($5, ingredients)
 	WHERE id = $6
+	RETURNING *;
 	`;
