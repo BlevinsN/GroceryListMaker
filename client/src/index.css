@@ -18,3 +18,7 @@ body{
 .select{
   z-index:10000;
 }
+
+.recipeTableClass:hover{
+  cursor:pointer;
+}

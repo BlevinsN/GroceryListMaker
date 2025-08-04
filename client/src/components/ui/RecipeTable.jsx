@@ -57,7 +57,7 @@ const RecipeTable = ({data}) => {
 
         <Table.Body>
           {data.map((item) => (
-            <Table.Row key={item.id}>
+            <Table.Row className="recipeTableClass" _hover={{ bg: "gray.muted" }} key={item.id}>
               <Table.Cell>{item.id}</Table.Cell>
               <Table.Cell>{item.dish_name}</Table.Cell>
               <Table.Cell>{item.dish}</Table.Cell>

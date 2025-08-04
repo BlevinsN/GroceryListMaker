@@ -1,9 +1,10 @@
 import React from 'react';
-import { VStack } from '@chakra-ui/react';
+import { VStack, HStack } from '@chakra-ui/react';
 import RecipeTable from "./components/ui/RecipeTable";
 import { useQuery } from "@tanstack/react-query";
 import {baseUrl} from "../constants/global-variable.js";
 import InputRecipe from "./components/ui/InputRecipe.jsx";
+import IngredientTable from "./components/ui/IngredientTable";
 import {
   Button,
   DialogTrigger,
@@ -30,14 +31,17 @@ const App = () => {
 
   console.log("data from postgres db:", data);
   return (
-    <VStack gap="6" align="flex-start">
-      <InputRecipe>
-        <DialogTrigger asChild>
-          <Button variant="outline">Add Recipe</Button>
-        </DialogTrigger>
-      </InputRecipe>
-      <RecipeTable data={data}/>
-    </VStack>
+    <HStack gap="6" align="flex-start">
+      <IngredientTable data={data}/>
+      <VStack gap="6" align="flex-start">
+        <InputRecipe>
+          <DialogTrigger asChild>
+            <Button variant="outline">Add Recipe</Button>
+          </DialogTrigger>
+        </InputRecipe>
+        <RecipeTable data={data}/>
+      </VStack>
+    </HStack>
   )
 };
 
