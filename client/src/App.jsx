@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import {baseUrl} from "../constants/global-variable.js";
 import InputRecipe from "./components/ui/InputRecipe.jsx";
 import IngredientTable from "./components/ui/IngredientTable";
+import { ColorModeButton } from "./components/ui/color-mode";
 import {
   Button,
   DialogTrigger,
@@ -19,7 +20,7 @@ const App = () => {
       throw new Error(data.error);
     }
     return data;
-  }
+  };
 
   const {isPending,isError,data,error} = useQuery({
     queryKey: ["recipe_details"],
@@ -30,18 +31,21 @@ const App = () => {
   if(isError) return error.message;
 
   console.log("data from postgres db:", data);
-  return (
-    <HStack gap="6" align="flex-start">
-      <IngredientTable data={data}/>
-      <VStack gap="6" align="flex-start">
-        <InputRecipe>
-          <DialogTrigger asChild>
-            <Button variant="outline">Add Recipe</Button>
-          </DialogTrigger>
-        </InputRecipe>
-        <RecipeTable data={data}/>
-      </VStack>
-    </HStack>
+  return ( 
+    <VStack>
+      <HStack gap="6" align="flex-start" >
+        <IngredientTable data={data}/>
+        <VStack gap="6" align="flex-start">
+          <InputRecipe>
+            <DialogTrigger asChild>
+              <Button variant="outline">Add Recipe</Button>
+            </DialogTrigger>
+          </InputRecipe>
+          <RecipeTable data={data}/>
+        </VStack>
+      </HStack>
+      <ColorModeButton/>
+    </VStack>
   )
 };
 

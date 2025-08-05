@@ -5,7 +5,8 @@ import {createRecipeTableQuery,
 		createRecipeQuery,
 		getRecipeQuery,
 		deleteRecipeQuery,
-		updateRecipeQuery
+		updateRecipeQuery,
+		getRecipeIngredientsQuery
 } from "../utils/sqlQuery.js"
 import {createError} from "../utils/error.js"
 
@@ -25,6 +26,17 @@ export async function getAllRecipes(req,res,next){
 		return next(createError(400, "Couldn't get recipe details!"));
 	}
 }
+
+export async function getAllIngredients(req,res,next){
+	try{
+		const {rows} = await query(getRecipeIngredientsQuery);
+		res.status(200).json(rows);
+	} catch(error){
+		console.log(error.message);
+		return next(createError(400, "Couldn't get recipe ingredients!"));
+	}
+}
+
 export async function getRecipe(req,res,next){
 	const id = req.params.id;
 	const data = await query(getRecipeQuery, [id]);
