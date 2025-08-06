@@ -1,27 +1,11 @@
 # GroceryListMaker
 
-[![Spelling](https://github.com/banesullivan/README/actions/workflows/spelling.yml/badge.svg)](https://github.com/banesullivan/README/actions/workflows/spelling.yml)
-
-> *Your documentation is a direct reflection of your software, so hold it to the same standards.*
-
-After much practice, I have a recipe of sorts for writing READMEs that I follow anytime I make a new project. I wanted to share my process here, gather feedback, and see if I can lower the barrier to writing a good README.
-
-*This guide is geared towards projects that do not yet, or never will, have flushed out documentation. Once a project has a dedicated website, the README should turn into a minimal elevator pitch and "link fest" to relevant materials.*
-
-
 ## 🌟 Highlights
+I had the brainchild behind this application after months of sitting at my desk going through my recipe Pinterest board, various cookbooks laying around the house, and recalling recipes from memory to create a weekly grocery list. The more recipes that become part of my fiance and I's monthly rotation, the more pages I need to reference in order before I can go to the grocery store. I thought to myself, what if this was saved all in one place, where I can just say what I want to cook, and my grocery list will be made for me. Hence the GroceryListMaker! To build the initial release for this project, I wanted to:
 
-I think a *"Highlights"* section is one of the most important to include at the top of a good README. Create a simple, bulleted list of the main selling points of your software.
-
-Here are the main takeaways of this guide:
-
-- Make it inviting, friendly, and approachable
-- Find the most appealing part of your software and *sell it*!
-- Keep it concise; ain't nobody got time for your manifesto
-- Have links to *everything* relevant (documentation, CI status, deployments, etc.)
-- Emoji usage is encouraged (I'm only half kidding)
-- A [template](./TEMPLATE.md) for you to use!
-
+- Create a user interface to display all of my recipes and remind me of some of those yummy ones that I might have forgotten about.
+- Quickly be able to add and remove recipes that I find online or might feel dont fit into our life style anymore.
+- Compile an exportable list of ingredients and quantities needed to create the selected recipes for the week.
 
 ## ℹ️ Overview
 
