@@ -22,26 +22,35 @@ const App = () => {
     return data;
   };
 
-  const {isPending,isError,data,error} = useQuery({
+  async function fetchIngredientsDetails(params) {
+    const res = await fetch(baseUrl+'/ing');
+    const data = await res.json();
+    if(!res.ok){
+      throw new Error(data.error);
+    }
+    return data;
+  };
+
+  const {isPending:isPending1,isError:isError1,data:data1,error:error1} = useQuery({
     queryKey: ["recipe_details"],
     queryFn: fetchRecipeDetails
   });
 
-  if(isPending) return "Loading";
-  if(isError) return error.message;
+  if(isPending1) return "Loading";
+  if(isError1) return error1.message;
 
-  console.log("data from postgres db:", data);
+  console.log("data from postgres db:", data1);
   return ( 
     <VStack>
       <HStack gap="6" align="flex-start" >
-        <IngredientTable data={data}/>
+        <IngredientTable data={data1}/>
         <VStack gap="6" align="flex-start">
           <InputRecipe>
             <DialogTrigger asChild>
               <Button variant="outline">Add Recipe</Button>
             </DialogTrigger>
           </InputRecipe>
-          <RecipeTable data={data}/>
+          <RecipeTable data={data1}/>
         </VStack>
       </HStack>
       <ColorModeButton/>

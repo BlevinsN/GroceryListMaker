@@ -19,6 +19,16 @@ body{
   z-index:10000;
 }
 
-.recipeTableClass:hover{
+.unselectedRecipe:_hover{
   cursor:pointer;
+  background-color: "gray.muted";
+}
+
+.selectedRecipe:_hover{
+  cursor:pointer;
+  background-color: white;
+}
+
+.selectedRecipe{
+  background-color: #C4C4C4;
 }

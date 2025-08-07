@@ -33,7 +33,7 @@ export async function getAllIngredients(req,res,next){
 		res.status(200).json(rows);
 	} catch(error){
 		console.log(error.message);
-		return next(createError(400, "Couldn't get recipe ingredients!"));
+		return next(createError(400, "Couldn't get recipe ingredients! HELP"));
 	}
 }
 

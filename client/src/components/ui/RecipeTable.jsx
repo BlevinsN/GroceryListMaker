@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Table } from "@chakra-ui/react";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
@@ -12,6 +12,16 @@ import {
   DialogTrigger
 } from "@chakra-ui/react";
 const RecipeTable = ({data}) => {
+
+  const [isClickedRowIds, setIsClickedRowIds] = useState([]);
+
+  const handleRowClick = (rowId) => {
+    if(isClickedRowIds.includes(rowId)) {
+      setIsClickedRowIds(isClickedRowIds.filter((id) => id !== rowId));
+    } else {
+      setIsClickedRowIds([...isClickedRowIds, rowId]);
+    }
+  };
 
   if(!data.length){
     return <h1>You dont have any recipes!</h1>
@@ -57,7 +67,10 @@ const RecipeTable = ({data}) => {
 
         <Table.Body>
           {data.map((item) => (
-            <Table.Row className="recipeTableClass" _hover={{ bg: "gray.muted" }} key={item.id}>
+            <Table.Row  key={item.id}
+                        onClick={() => handleRowClick(item.id)}
+                        _hover={{bg:isClickedRowIds.includes(item.id) ? "#C4C4C4" : "gray.muted"}}
+                        className={isClickedRowIds.includes(item.id) ? 'selectedRecipe' : 'unselectedRecipe'}>
               <Table.Cell>{item.id}</Table.Cell>
               <Table.Cell>{item.dish_name}</Table.Cell>
               <Table.Cell>{item.dish}</Table.Cell>

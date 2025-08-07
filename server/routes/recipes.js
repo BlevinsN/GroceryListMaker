@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/", getAllRecipes);
 
-router.get("/ingredients", getAllIngredients);
+router.get("/ing", getAllIngredients);
 
 router.post("/",createRecipe);
 

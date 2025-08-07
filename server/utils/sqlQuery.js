@@ -35,4 +35,4 @@ export const updateRecipeQuery = `
 	RETURNING *;
 	`;
 
-export const getRecipeIngredientsQuery = 'SELECT ingredients, SUM(*) AS quantity FROM recipe_details GROUP BY id ingredients';
+export const getRecipeIngredientsQuery = 'SELECT ingredients AS item FROM recipe_details GROUP BY ingredients;';
