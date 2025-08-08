@@ -4,7 +4,7 @@ import { Portal, Select, createListCollection } from "@chakra-ui/react"
 const SelectDishType = ( {setInfo}) => {
 	return (
 		<Select.Root collection={dishtypes} size="sm" width="320px"
-			onChange={(e)=>setInfo((prev) =>({ ...prev, role: e.target.value}))}>
+			onChange={(e)=>setInfo((prev) =>({ ...prev, dish: e.target.value}))}>
 			<Select.HiddenSelect />
 			<Select.Label>Dish Type</Select.Label>
 			<Select.Control>
