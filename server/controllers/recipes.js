@@ -25,7 +25,7 @@ export async function getAllRecipes(req,res,next){
 		console.log(error.message);
 		return next(createError(400, "Couldn't get recipe details!"));
 	}
-}
+};
 
 export async function getAllIngredients(req,res,next){
 	try{
@@ -35,7 +35,7 @@ export async function getAllIngredients(req,res,next){
 		console.log(error.message);
 		return next(createError(400, "Couldn't get recipe ingredients! HELP"));
 	}
-}
+};
 
 export async function getRecipe(req,res,next){
 	const id = req.params.id;
@@ -45,7 +45,7 @@ export async function getRecipe(req,res,next){
 		return next(createError(400,"Recipe not found!"));
 	}
 	res.status(200).json(data.rows[0]);
-}
+};
 export async function deleteRecipe(req,res,next){
 	const id = req.params.id;
 	const data = await query(deleteRecipeQuery, [id]);
@@ -54,7 +54,7 @@ export async function deleteRecipe(req,res,next){
 		return next(createError(400,"Recipe not found!"));
 	}
 	res.status(200).json({message:"Delete successfully"});
-}
+};
 export async function updateRecipe(req,res,next){
 	try{
 		const{id} = req.params;
@@ -67,7 +67,7 @@ export async function updateRecipe(req,res,next){
 	} catch(error){
 		res.status(400).json({error: error.message});
 	}
-}
+};
 export async function createRecipe(req,res,next){
 	try{
 		const {dish_name,dish_creator,servings,dish,ingredients} = req.body;
@@ -80,4 +80,4 @@ export async function createRecipe(req,res,next){
 		console.log(error,message);
 		return next(createError(400,error,message));
 	}
-}
+};

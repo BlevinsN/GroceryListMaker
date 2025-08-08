@@ -35,4 +35,4 @@ export const updateRecipeQuery = `
 	RETURNING *;
 	`;
 
-export const getRecipeIngredientsQuery = 'SELECT ingredients AS item FROM recipe_details GROUP BY ingredients;';
+export const getRecipeIngredientsQuery = 'SELECT * FROM recipe_details WHERE servings > 20 ORDER BY id';

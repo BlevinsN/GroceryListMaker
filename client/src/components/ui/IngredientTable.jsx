@@ -1,9 +1,14 @@
 import React from 'react';
 import { Table } from "@chakra-ui/react";
-import { Checkbox } from "@chakra-ui/react"
+import { Checkbox } from "@chakra-ui/react";
+import { useQuery } from "@tanstack/react-query";
+import {baseUrl} from "../../../constants/global-variable.js";
 
 const IngredientTable = ({data}) => {
 
+  if(data.length === 0){
+    return "No Ingredients Needed!";
+  }
 
 	return (
     <Table.ScrollArea borderWidth="1px" rounded="md" height="765px">

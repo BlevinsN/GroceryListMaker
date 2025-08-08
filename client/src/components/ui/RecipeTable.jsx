@@ -11,15 +11,17 @@ import InputRecipe from "./InputRecipe.jsx";
 import {
   DialogTrigger
 } from "@chakra-ui/react";
-const RecipeTable = ({data}) => {
+const RecipeTable = ({data,onDataRecieved}) => {
 
   const [isClickedRowIds, setIsClickedRowIds] = useState([]);
 
   const handleRowClick = (rowId) => {
     if(isClickedRowIds.includes(rowId)) {
       setIsClickedRowIds(isClickedRowIds.filter((id) => id !== rowId));
+      onDataRecieved(isClickedRowIds.filter((id) => id !== rowId));
     } else {
       setIsClickedRowIds([...isClickedRowIds, rowId]);
+      onDataRecieved([...isClickedRowIds, rowId]);
     }
   };
 
