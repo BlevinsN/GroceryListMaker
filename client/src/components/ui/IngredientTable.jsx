@@ -10,6 +10,9 @@ const IngredientTable = ({data}) => {
     return "No Ingredients Needed!";
   }
 
+  const row_data = data.map(item => item.ingredients).flatMap(str => str.split(','));
+  console.log(row_data);
+
 	return (
     <Table.ScrollArea borderWidth="1px" rounded="md" height="765px">
       <Table.Root size="sm" stickyHeader>
@@ -21,10 +24,9 @@ const IngredientTable = ({data}) => {
         </Table.Header>
 
         <Table.Body>
-          {data.map((item) => (
-            <Table.Row key={item.id}>
-              <Table.Cell>{item.ingredients}</Table.Cell>
-              <Table.Cell>{item.quantity}</Table.Cell>
+          {row_data.map((item,index) => (
+            <Table.Row key={index}>
+              <Table.Cell>{item}</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
