@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import { VStack, HStack } from '@chakra-ui/react';
 import RecipeTable from "./components/ui/RecipeTable";
 import { useQuery } from "@tanstack/react-query";
@@ -30,24 +30,48 @@ const App = () => {
     queryFn: fetchRecipeDetails
   });
 
+  const [filteredRecipes, setFilteredRecipes] = useState([]);
 
-  const [filteredData, setFilteredData] = useState(data);
+  useEffect(() => {
+    if(data) {
+      setFilteredRecipes(data);
+    }
+  }, [data]);
+
+  function handleFilter({dishType, servingSize}){
+    if(!data) return;
+
+    let filtered = data;
+
+    if(dishType && dishType !== "null"){
+      filtered = filtered.filter((r) => r.dish === dishType);
+    };
+    if(servingSize && servingSize !== "null") {
+      filtered = filtered.filter(r => Number(r.servings) >= servingSize);
+    };
+
+    setFilteredRecipes(filtered);
+    console.log("Filtered Recipes:", filtered);
+  }
+
+
+  const [selectedDataIngredients, setSelectedDataIngredients] = useState(data);
 
   const handleRecipeData = (index_data) => {
     setSelectedData(index_data);
-    console.log("Data recieved from child:", index_data);
-    const newFilteredData = data.filter(item => index_data.includes(item.id));
-    setFilteredData(newFilteredData)
+    if(!filteredRecipes) return;
+    const IngredientData = filteredRecipes.filter(item => index_data.includes(item.id));
+    setSelectedDataIngredients(IngredientData)
   };
 
   if(isPending) return "Loading";
   if(isError) return error.message;
 
-  console.log("data from postgres db:", data);
+  //console.log("data from postgres db:", data);
   return ( 
     <VStack>
       <HStack gap="6" align="flex-start" >
-        <IngredientTable data={filteredData}/>
+        <IngredientTable data={selectedDataIngredients}/>
         <VStack gap="6" align="flex-start">
           <HStack>
             <InputRecipe>
@@ -55,9 +79,9 @@ const App = () => {
                 <Button variant="outline">Add Recipe</Button>
               </DialogTrigger>
             </InputRecipe>
-            <Filter/>
+            <Filter handleFilter={handleFilter}/>
           </HStack>
-          <RecipeTable onDataRecieved={handleRecipeData} data={data}/>
+          <RecipeTable onDataRecieved={handleRecipeData} data={filteredRecipes.length ? filteredRecipes : data}/>
         </VStack>
       </HStack>
       <ColorModeButton/>

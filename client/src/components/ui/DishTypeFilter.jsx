@@ -1,15 +1,15 @@
 import React from 'react';
 import { Portal, Select, createListCollection, Text, HStack } from "@chakra-ui/react"
 
-const DishTypeFilter = () => {
+const DishTypeFilter = ({value, onChange}) => {
 	return (
-		<Select.Root collection={dishtypes} size="sm">
+		<Select.Root collection={dishtypes} size="sm" onChange={(e) => onChange(e.target.value)}>
 			<HStack gap="3">
 				<Text>Dish Type</Text>
 				<Select.HiddenSelect />
 				<Select.Control>
 					<Select.Trigger width="145px">
-						<Select.ValueText placeholder="None" />
+						<Select.ValueText placeholder={value} />
 					</Select.Trigger>
 					<Select.IndicatorGroup>
 						<Select.Indicator />
@@ -31,7 +31,6 @@ const DishTypeFilter = () => {
 		</Select.Root>
 	);
 };
-
 
 export default DishTypeFilter;
 

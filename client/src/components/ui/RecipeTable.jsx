@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Table } from "@chakra-ui/react";
+import { Table, Badge } from "@chakra-ui/react";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { HStack } from '@chakra-ui/react';
@@ -13,11 +13,11 @@ import {
 } from "@chakra-ui/react";
 const RecipeTable = ({data,onDataRecieved}) => {
 
-  const [filteredGroup, setFilteredGroup] = useState("All");
+  //const [filteredGroup, setFilteredGroup] = useState("All");
 
-  function handleFilter(event){
-    setFilteredGroup(event.target.value);
-  }
+  //function handleFilter(event){
+  //  console.log(event.target.value);
+  //}
 
   const [isClickedRowIds, setIsClickedRowIds] = useState([]);
 
@@ -78,10 +78,11 @@ const RecipeTable = ({data,onDataRecieved}) => {
             <Table.Row  key={item.id}
                         onClick={() => handleRowClick(item.id)}
                         _hover={{bg:isClickedRowIds.includes(item.id) ? "#C4C4C4" : "gray.muted"}}
-                        className={isClickedRowIds.includes(item.id) ? 'selectedRecipe' : 'unselectedRecipe'}>
+                        className={isClickedRowIds.includes(item.id) ? 'selectedRecipe' : 'unselectedRecipe'}
+                        >
               <Table.Cell>{item.id}</Table.Cell>
               <Table.Cell>{item.dish_name}</Table.Cell>
-              <Table.Cell>{item.dish}</Table.Cell>
+              <Table.Cell><Badge variant="solid">{item.dish}</Badge></Table.Cell>
               <Table.Cell>{item.dish_creator}</Table.Cell>
               <Table.Cell>{item.servings}</Table.Cell>
               <Table.Cell>
