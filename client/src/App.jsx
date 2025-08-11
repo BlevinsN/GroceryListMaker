@@ -6,6 +6,7 @@ import {baseUrl} from "../constants/global-variable.js";
 import InputRecipe from "./components/ui/InputRecipe.jsx";
 import IngredientTable from "./components/ui/IngredientTable";
 import { ColorModeButton } from "./components/ui/color-mode";
+import Filter from "./components/ui/Filter";
 import {
   Button,
   DialogTrigger,
@@ -48,11 +49,14 @@ const App = () => {
       <HStack gap="6" align="flex-start" >
         <IngredientTable data={filteredData}/>
         <VStack gap="6" align="flex-start">
-          <InputRecipe>
-            <DialogTrigger asChild>
-              <Button variant="outline">Add Recipe</Button>
-            </DialogTrigger>
-          </InputRecipe>
+          <HStack>
+            <InputRecipe>
+              <DialogTrigger asChild>
+                <Button variant="outline">Add Recipe</Button>
+              </DialogTrigger>
+            </InputRecipe>
+            <Filter/>
+          </HStack>
           <RecipeTable onDataRecieved={handleRecipeData} data={data}/>
         </VStack>
       </HStack>

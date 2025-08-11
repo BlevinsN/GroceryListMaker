@@ -13,6 +13,12 @@ import {
 } from "@chakra-ui/react";
 const RecipeTable = ({data,onDataRecieved}) => {
 
+  const [filteredGroup, setFilteredGroup] = useState("All");
+
+  function handleFilter(event){
+    setFilteredGroup(event.target.value);
+  }
+
   const [isClickedRowIds, setIsClickedRowIds] = useState([]);
 
   const handleRowClick = (rowId) => {
